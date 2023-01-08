@@ -8,18 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('driver_vehicle', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->decimal('value');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreignId('driver_id')->constrained();
+            $table->foreignId('vehicle_id')->constrained();
+            $table->foreignId('user_id')->constrained();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('car_rentals');
     }
 };
